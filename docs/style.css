@@ -68,7 +68,6 @@ in the center, so it's placed to the left. These are used with .knit_border and
   height: 100%
 }
 
-
 .rmd_example_result {
   background-color: lightyellow;
   border-style: dotted;

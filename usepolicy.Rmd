@@ -2,9 +2,27 @@
 title: Data Use and Responsibility
 ---
 
-CCN is committed to treating data responsibly and providing credit to the authors who worked hard to collect, perform QAQC, etc. Download the Coastal Carbon Network's [data responsibility agreement][1].
+CCN is committed to treating data responsibly and providing credit to the authors who worked hard to collect, perform QAQC, etc. Download the Coastal Carbon Network's data responsibility agreement:
 
-[1]:{{ site.url }}/downloads/CCN_Data_Responsibility_20190308.pdf
+
+```{r echo=FALSE, warning=FALSE}
+library(downloadthis)
+
+## One file example
+download_file(
+  path = "downloads/CCN_Data_Responsibility_20190308.pdf",
+  output_name = "CCN_Data_Responsibility_Agreement",
+  button_label = "Download Me",
+  button_type = "info",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+
+# other examples
+# https://fmmattioni.github.io/downloadthis/articles/downloadthis.html
+```
+
 
 ### How do I cite data downloaded from the Atlas?
 

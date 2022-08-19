@@ -20,7 +20,7 @@ library(reactablefmtr)
 ```
 
 
-```{r echo=FALSE, eval=FALSE}
+```{r echo=FALSE}
 
 # load controlled variables for table nesting
 variables <- read_csv("https://raw.githubusercontent.com/Smithsonian/CCRCN-Data-Library/main/docs/controlled_variables.csv", 

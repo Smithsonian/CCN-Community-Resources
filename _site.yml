@@ -5,16 +5,21 @@ navbar:
   title: "CCRCN Community Resources"
   href: index.html
   left:
+    - text: "About"
+      href: about.html
     - text: "Projects"
       menu:
         - text: "Soils Working Group"
           href: swg.html
         - text: "Methane Working Group"
           href: mwg.html 
+        # - text: "Blue Carbon Inventorying"
     - text: "CCN Data"
       menu:
         - text: "Database Structure"
-          href: ccn_database_structure.html
+          href: soil_carbon_guidance.html
+        - text: "Contributing Data"
+          href: contributing.html
         - text: "Data Use Policy"
           href: usepolicy.html
     - text: "Products"
@@ -27,7 +32,7 @@ navbar:
       menu:
         - text: "Training, Tutorials, and Resources"
           href: https://serc.si.edu/coastalcarbon/outreach-and-training
-        - text: "Code of Conduct"
+        - text: "Collaboration and Conduct"
           href: conduct.html
 
 output:
@@ -35,9 +40,12 @@ output:
     toc: true
     toc_float:
       collapsed: false
-    toc_depth: 3
+    # toc_depth: 3
     theme: sandstone
     css: style.css
 
+# Resources
+# how to make an Rmd website
+# https://psu-psychology.github.io/psy-525-reproducible-research-2020/how_to/make-website-with-rstudio.html
 # custom themes    
 # https://www.datadreaming.org/post/r-markdown-theme-gallery/
