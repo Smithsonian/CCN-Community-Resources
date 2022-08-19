@@ -1,0 +1,35 @@
+---
+title: "Coastal Carbon Network"
+subtitle: "Community Resources"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Welcome to the CCRCN Community Resources website!!
+
+## About
+
+The Coastal Carbon Research Coordination Network is a consortium of biogeochemists, ecologists, pedologists, and coastal land managers with the goal of accelerating the pace of discovery in coastal wetland carbon science by providing our community with access to data, analysis tools, and synthesis opportunities. We have accomplished this goal by growing iteratively with community feedback, facilitating the sharing of open data and analysis products, offering training in data management and analytics, and leading topical working groups aimed at quantitatively reducing uncertainty in coastal greenhouse gas emissions and storage. We also curate a Data Clearinghouse that offers infrastructure and tools for accessing, visualizing, and summarizing data. Major achievements include:
+
+- Issuing guidance for soil carbon databasing
+- The public release of over 1,500 U.S.-based tidal soil carbon profiles and the curation of 1,700 more
+- Facilitating our inaugural working group on improved measuring, reporting, modeling, and mapping of soil carbon burial rates and carbon stocks in coastal wetlands
+
+In order to quantitatively improve the state of the science through collaboration and training, we create and engage with topical working groups to share data and expertise. Current working groups: Methane Working Group, Soils Working Group.
+
+## Funding
+
+Former funding
+- NSF
+- USGS
+
+## Partners and Collaborators
+
+- Pacific Northwest Blue Carbon Group (link to website)
+- USGS
+- Conservation International
+- etc
+
+

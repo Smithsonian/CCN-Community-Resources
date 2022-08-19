@@ -1,0 +1,15 @@
+---
+title: Data Use and Responsibility
+---
+
+CCN is committed to treating data responsibly and providing credit to the authors who worked hard to collect, perform QAQC, etc. Download the Coastal Carbon Network's [data responsibility agreement][1].
+
+[1]:{{ site.url }}/downloads/CCN_Data_Responsibility_20190308.pdf
+
+### How do I cite data downloaded from the Atlas?
+
+Data downloaded from the Atlas will include a bibliography tailored to the dataset you have downloaded. Please cite the original data publications as well as the Coastal Carbon Network.
+
+### How to cite the Coastal Carbon Network
+
+Database citation in progress. Licensing is listed under the [Creative Commons BY 4.0](https://creativecommons.org/licenses/by/4.0/).

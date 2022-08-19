@@ -1,0 +1,181 @@
+---
+title: "Coastal Carbon Network Data Library Structure"
+---
+
+```{r setup, include=FALSE}
+## script for generating a pretty HTML version of the database guidance
+## contact: Jaxine Wolfe, wolfejax@si.edu
+
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+# this sets the working directory to start where the R project is located
+# knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+
+## load libraries
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(reactable)
+library(reactablefmtr)
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+
+# load controlled variables for table nesting
+variables <- read_csv("https://raw.githubusercontent.com/Smithsonian/CCRCN-Data-Library/main/docs/controlled_variables.csv", 
+                      col_types = cols()) %>% 
+  # remove vars that are undefined/obsolete
+  filter(!(variable_name %in% c("mass accumulation", "accretion", "salt impacted")))
+
+# create shortened version of variables to display
+vars_collapse <- variables %>% 
+  group_by(attribute_name) %>% 
+  summarise(variable_names = paste(variable_name, collapse="; "))
+
+# read in guidance from Data Library repo
+guidance <- read_csv("https://raw.githubusercontent.com/Smithsonian/CCRCN-Data-Library/main/docs/ccrcn_database_structure.csv", 
+                     col_types = cols()) %>% 
+  # filter out attributes added during post-processing
+  filter(required != "added automatically") %>% 
+  mutate(required = case_when(required %in% c("required", "encouraged") ~ "Y",
+                                   attribute_name %in% c("study_id", "site_id", "core_id", "method_id", "habitat",
+                                                         "salinity_class", "vegetation_class", "inundation_class", "impact_class",
+                                                         "salinity_method", "vegetation_method", "inundation_method") ~ "Y", 
+                                   TRUE ~ NA_character_)) %>% 
+  # mutate(required = recode(required, "conditional" = "encouraged")) %>% 
+  select(table, attribute_name, attribute_definition, required,  data_type, format_unit_codes) %>% 
+  left_join(vars_collapse) # join the collapsed variable names
+
+
+
+# write function to generate interactive tables
+renderTable <- function(tabletype){
+  
+  table_guidance <- guidance %>%
+    filter(table == tabletype) %>% 
+    mutate(units = ifelse(data_type == "factor", NA, format_unit_codes)) %>% 
+    select(-table, -format_unit_codes) %>% select(-variable_names, variable_names) %>% 
+    rename(`column name` = attribute_name, `data type` = data_type, 
+           definition = attribute_definition, `variable names` = variable_names)
+  # need to make column names more user friendly
+  
+  # conditionally displayed table nesting
+  factor_rows <- which(table_guidance$`data type` == "factor")
+  # conditional emphasis of key attributes
+  key_rows <- which(table_guidance$required == "Y")
+  
+  # create interactive table
+  reactable(table_guidance %>% select(-required), searchable = TRUE, highlight = TRUE, 
+            pagination = FALSE,
+            # bold key attributes
+            columns = list(`column name` = colDef(style = cell_style(rows = key_rows, 
+                                                                     font_weight = "bold",
+                                                                     horizontal_align = "left"),
+                                                  width = 210),
+                           definition = colDef(width = 200),
+                           `data type` = colDef(width =  80)),
+            # rowClass = function(index) {
+            #   if (table_guidance$required[index] == "required") {
+            #     "bold"
+            #   }
+            # },
+            # columns = list(
+            #   Make = colDef(minWidth = 200),   # 50% width, 200px minimum
+            #   Type = colDef(minWidth = 100),   # 25% width, 100px minimum
+            #   Weight = colDef(minWidth = 100)  # 25% width, 100px minimum
+            # ),
+            details = function(index) {
+    if (index %in% factor_rows) {
+      # store variable name at index
+      attribute <- table_guidance$`column name`[index]
+      # create table of variable codes for given attribute
+      reactable(variables %>% 
+                  filter(attribute_name == attribute) %>% 
+                  select(-attribute_name), 
+                # specify styling
+                bordered = TRUE, highlight = TRUE, fullWidth = TRUE)
+    }
+  })
+}
+```
+
+### Database Overview
+
+This page details the database guidance for the types and scope of data that will be archived as part of the tidal wetland soil core data synthesis, developed by the [Coastal Carbon Network](https://serc.si.edu/coastalcarbon). This database structure was developed by members of the community it hopes to serve, and is designed to make datasets machine-readable and interoperable. Data curated for publication or prepared for ingestion into the CCN Data Library will follow the naming conventions outlined herein.
+
+The following database structure is organized in hierarchical levels. Each level represents a flat spreadsheet file (i.e. CSV file) where records in each file are linked by common attributes (i.e. columns) such as *study_id*, *site_id*, *core_id*, and *method_id*. Data is housed in up to six separate spreadsheets:
+
+-   **materials and methods:** contains information on the methodology of how soil cores were collected and processed. (Required)
+-   **sites:** contains positional and descriptive information of the coring sites. (Encouraged if information is not available at the core-level)
+-   **cores:** contains positional and descriptive information about the individual cores collected. (Required)
+-   **depthseries:** contains disaggregated depth-series information for all cores described in the cores table. (Required)
+-   **species:** contains information on the dominant plant species at the site or coring locations. (Encouraged if applicable)
+-   **impacts:** contains information on the anthropogenic impacts at site or coring locations. (Encouraged if applicable)
+
+All variables at each level are accompanied by a definition and, if applicable, associated units or codes. Units are specified for columns that we wish to keep uniform across synthesized datasets, and codes are controlled vocabulary for categorical variables. We also include accompanying sets of recommended controlled vocabulary for key categorical variables (also known as factors). Use the arrows within the tables to expand the definitions for categorical variables.
+
+We welcome contributions of soil core data from any coastal wetlands. We accept data that is published, soon-to-be published, or unpublished as long as it is available in disaggregated form. This means that soil profile information is present down to the level of sampling interval. Throughout the table **key attributes** are in **bold**. Please strive to provide data for these attributes whenever possible. Templates of these spreadsheets can be requested for data entry (see contact information below) or downloaded from the [CCRCN Data Templates](https://drive.google.com/drive/folders/14N-7l1s151Qmp4AqQOWtIeMtc3efsYZT?usp=sharing) folder on Google Drive.
+
+Please direct any comments or inquiries to the [Coastal Carbon Network](mailto:CoastalCarbon@si.edu){.email} resource account or [Jaxine Wolfe](mailto:wolfejax@si.edu){.email} (CCN data technician).
+
+### Database Guidance {.tabset .tabset-fade .tabset-pills}
+
+------------------------------------------------------------------------
+
+#### Materials and Methods
+
+```{r, echo=FALSE}
+
+renderTable("methods")
+
+# code for the old table
+# guidance %>%
+#   filter(table_name == "methods") %>%
+#   mutate(attribute_name = cell_spec(attribute_name, "html", bold = ifelse(required=="required", T, F))) %>%
+#   rename('column name' = attribute_name) %>% 
+#   select(-c(table_name, required)) %>%
+#   kable(format="html", escape=F) %>%
+#   kable_styling("striped")
+
+```
+
+#### Site-level
+
+```{r, echo=FALSE}
+
+renderTable("sites")
+
+```
+
+#### Core-level
+
+```{r, echo=FALSE}
+
+renderTable("cores")
+
+```
+
+#### Core Depthseries
+
+```{r, echo=FALSE}
+
+renderTable("depthseries")
+
+```
+
+#### Impacts
+
+```{r, echo=FALSE}
+
+renderTable("impacts")
+
+```
+
+#### Species
+
+```{r, echo=FALSE}
+
+renderTable("species")
+
+```

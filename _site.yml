@@ -1,0 +1,42 @@
+name: "ccrcn-community-resources"
+output_dir: "docs"
+navbar:
+  type: inverse
+  title: "CCRCN Community Resources"
+  href: index.html
+  left:
+    - text: "Projects"
+      menu:
+        - text: "Soils Working Group"
+          href: swg.html
+        - text: "Methane Working Group"
+    - text: "CCN Data"
+      menu:
+        - text: "Database Structure"
+          href: ccn_database_structure.html
+        - text: "Data Use Policy"
+          href: usepolicy.html
+    - text: "Products"
+      menu:
+        - text: "Coastal Carbon Atlas"
+          href: atlas.html
+        - text: "Blue Carbon Data Inventory"
+          href: https://smithsonian.github.io/CCRCN-Pew-Project/
+    - text: "Resources"
+      menu:
+        - text: "Training, Tutorials, and Resources"
+          href: https://serc.si.edu/coastalcarbon/outreach-and-training
+        - text: "Code of Conduct"
+          href: conduct.html
+
+output:
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+    toc_depth: 3
+    theme: sandstone
+    css: style.css
+
+# custom themes    
+# https://www.datadreaming.org/post/r-markdown-theme-gallery/
