@@ -10,6 +10,7 @@ navbar:
         - text: "Soils Working Group"
           href: swg.html
         - text: "Methane Working Group"
+          href: mwg.html 
     - text: "CCN Data"
       menu:
         - text: "Database Structure"
