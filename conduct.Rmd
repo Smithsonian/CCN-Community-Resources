@@ -1,8 +1,8 @@
 ---
-title: Code of Conduct
+title: Principles and Governance
 ---
 
-## Statement of Collaboration:
+## Statement of Collaboration
 
 Members involved in CCRCN collaborations are entitled to their own intellectual property, and distinctions should be made clarifying what is individual property versus group property. Here are the principles to which the Soil Carbon working group adheres to:
 
@@ -13,7 +13,7 @@ Members involved in CCRCN collaborations are entitled to their own intellectual 
 - At the end of the project, working group members commit to making code and derivative data products that the group developed collectively open and available as part of data releases associated with papers and reports.
 - The working group will publish products that only include data that is or will be publicly available (via repository) at the time of working group publication.
 
-## Code of Conduct: 
+## Code of Conduct
 
 The Coastal Carbon Research Coordination Network (CCRCN) is dedicated to
 providing a welcoming and supportive environment for all people,

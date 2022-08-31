@@ -4,7 +4,10 @@ title: Welcome to the CCRCN Community Resources Portal
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(fontawesome)
 ```
+
 
 *Description of the purpose of this website.*
 
@@ -14,7 +17,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Announcements
 
-## Stay up to date with the CCRCN
+## Join the Network
 
-- Follow our [twitter](https://twitter.com/coastalcarbon) 
-- Subscribe to our [Monthly Newsletter.](https://serc.us3.list-manage.com/subscribe?u=af8134afadeb9e6ccf2e10d07&id=28668d9617)
+**Stay up to date with the CCRCN**
+
+- Follow our [twitter](https://twitter.com/coastalcarbon) `r fa("twitter", fill = "blue")`
+- Subscribe to our [Monthly Newsletter.](https://serc.us3.list-manage.com/subscribe?u=af8134afadeb9e6ccf2e10d07&id=28668d9617) `r fa("envelope", fill = "steelblue")`

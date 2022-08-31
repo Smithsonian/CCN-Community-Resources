@@ -1,0 +1,59 @@
+---
+title: Data Contributor Materials
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+library(downloadthis)
+```
+
+## Data Curation Materials
+
+Data and metadata template downloads
+
+```{r}
+
+## Download one file
+download_file(
+  path = "downloads/templates/ccrcn_cores_template.xlsx",
+  output_name = "ccrcn_cores_template", # left off here
+  output_extension = ".xlsx",
+  button_label = "Download Core Template",
+  button_type = "info",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+
+# other examples
+# https://fmmattioni.github.io/downloadthis/articles/downloadthis.html
+```
+
+```{r}
+# download zip file
+  download_dir(
+    path = "downloads/templates",
+    output_name = "ccrcn_data_templates",
+    button_label = "Download all templates",
+    button_type = "primary",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+```
+
+## References
+
+Standards and Catalogs:
+
+- [ISO Geodetic Registry](https://geodetic.isotc211.org/register/geodetic/VerticalDatum)
+- [NOAA Tidal Datums](https://tidesandcurrents.noaa.gov/datum_options.html)
+- Controlled vocabulary for keywords?
+- EML standard units
+
+## Publications for Thought
+
+Wilson, G., Bryan, J., Cranston, K., Kitzes, J., Nederbragt, L., & Teal, T. K. (2017). Good enough practices in scientific computing. PLoS computational biology, 13(6), e1005510. https://doi.org/10.1371/journal.pcbi.1005510
+
+Serwadda, D., Ndebele, P., Grabowski, M. K., Bajunirwe, F., & Wanyenze, R. K. (2018). Open data sharing and the Global South—Who benefits?. Science, 359(6376), 642-643. https://doi.org/10.1126/science.aap8395
+

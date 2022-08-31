@@ -1,12 +1,11 @@
 ---
 title: Methane Working Group
-subtitle: Improving predictions of methane emissions from coastal wetlands
 ---
 
-*Overarching goal of CH4 working group:*
-Improve predictions of methane emissions from coastal wetlands. Specifically, we aim to compile all methane flux data from coastal habitats (not mangroves) in the CONUS to parameterize and validate a set of nested process-based CH4 models.
+![](./media/mwg_group_photo.jpeg)
+This topical working group seeks to improve predictions of methane emissions from coastal wetlands. Specifically, we aim to compile all methane flux data from coastal habitats (not mangroves) in the contiguous United States to parameterize and validate a set of nested process-based CH4 models.
 
-**Research Questions:**
+## Research Questions:
 
 - How well can we predict methane emissions from coastal wetlands? In other words, what are the main sources of error? What types of wetlands are the most difficult to model (along spectrum of salinity, disturbance/age, plant community etc.)
 - What data streams are needed to improve our predictions?

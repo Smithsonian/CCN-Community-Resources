@@ -102,6 +102,7 @@ renderTable <- function(tabletype){
 
 ### Database Overview
 
+<!-- Naming Conventions for Attributes and Variables -->
 This page details the database guidance for the types and scope of data that will be archived as part of the tidal wetland soil core data synthesis, developed by the [Coastal Carbon Network](https://serc.si.edu/coastalcarbon). This database structure was developed by members of the community it hopes to serve, and is designed to make datasets machine-readable and interoperable. Data curated for publication or prepared for ingestion into the CCN Data Library will follow the naming conventions outlined herein.
 
 The following database structure is organized in hierarchical levels. Each level represents a flat spreadsheet file (i.e. CSV file) where records in each file are linked by common attributes (i.e. columns) such as *study_id*, *site_id*, *core_id*, and *method_id*. Data is housed in up to six separate spreadsheets:

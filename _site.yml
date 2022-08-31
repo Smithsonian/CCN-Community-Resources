@@ -14,25 +14,27 @@ navbar:
         - text: "Methane Working Group"
           href: mwg.html 
         # - text: "Blue Carbon Inventorying"
-    - text: "CCN Data"
-      menu:
-        - text: "Database Structure"
-          href: soil_carbon_guidance.html
-        - text: "Contributing Data"
-          href: contributing.html
-        - text: "Data Use Policy"
-          href: usepolicy.html
     - text: "Products"
       menu:
         - text: "Coastal Carbon Atlas"
           href: atlas.html
         - text: "Blue Carbon Data Inventory"
           href: https://smithsonian.github.io/CCRCN-Pew-Project/
+        - text: "Publications"
+          href: pubs.html
+    - text: "Data"
+      menu:
+        - text: "Soils Database"
+          href: soil_carbon_guidance.html
+        - text: "Contributing Data"
+          href: contributing.html
+        - text: "Data Use Policy"
+          href: usepolicy.html
     - text: "Resources"
       menu:
         - text: "Training, Tutorials, and Resources"
           href: https://serc.si.edu/coastalcarbon/outreach-and-training
-        - text: "Collaboration and Conduct"
+        - text: "Principles and Governance"
           href: conduct.html
 
 output:
@@ -44,8 +46,9 @@ output:
     theme: sandstone
     css: style.css
 
-# Resources
+# Website-building Resources
 # how to make an Rmd website
 # https://psu-psychology.github.io/psy-525-reproducible-research-2020/how_to/make-website-with-rstudio.html
 # custom themes    
 # https://www.datadreaming.org/post/r-markdown-theme-gallery/
+# https://rstudio4edu.github.io/rstudio4edu-book/

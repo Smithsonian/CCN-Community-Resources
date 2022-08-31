@@ -104,3 +104,14 @@ padding: 10px;
 div.r-help-page:hover {
 background-color: #f4f4f4;
 }
+
+#header.fluid-row::before {
+   content: "";
+   height: 150px;
+   width: 150px;
+   float: right;
+   background-image: "media/ccrcn_logo.jpeg";
+   background-size: contain;
+   background-position: center center;
+   background-repeat: no-repeat;
+ }

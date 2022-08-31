@@ -1,0 +1,52 @@
+---
+title: CCN Publications
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+library(tidyverse)
+library(DT)
+```
+
+## Data Publications
+
+The Network recognizes three classes of data: (i) data that we curate, (ii) data that we ingest, and (iii) synthesis products we create. Data that we curate will be hosted on Smithsonian Institution (SI) servers, however, full accreditation is given to the dataset authors and provenance is maintained. Data that we ingest will include both data we curate and data from any outside sources that meet basic availability, archiving, and metadata standards.
+
+See below for a list of CCRCN data products.
+
+```{r}
+# pubs <- read_xlsx("data/ccn_data_pubs.xlsx") %>%
+#   mutate(last_updated = as.character(as.Date(as.numeric(last_updated), origin = "1899-12-30")),
+#          day = day(last_updated), month = month(last_updated), year = year(last_updated)) %>% 
+#          # last_updated = ifelse(is.na(last_updated), "2022-02-22", last_updated)) %>%
+#   separate(citation, into = c("citation", "doi"), sep = "https://")
+# write_csv(pubs, "data/ccn_data_pubs.csv")
+
+pubs <- read_csv("data/ccn_data_pubs.csv") %>% 
+  mutate(`Last Updated` = str_c(year, month, day, sep = "-"),
+         citation = paste0(citation, " https://", doi)) %>% 
+  rename(`Data Release` = data_product, Citation = citation) %>% 
+  select(-c(day, month, year, doi))
+
+datatable(pubs,
+          options = list(searching = FALSE,
+                         paging = FALSE,
+                         info = FALSE,
+                         scrollY = 300,
+                         scrollX = 300,
+                         scrollCollapse = TRUE),
+          rownames = FALSE)
+
+```
+
+
+## Affiliated Paper Publications
+
+Malhotra, A., Todd-Brown, K., Nave, L. E., Batjes, N. H., Holmquist, J. R., Hoyt, A. M., ... & Harden, J. (2019). The landscape of soil carbon data: emerging questions, synergies and databases. *Progress in Physical Geography: Earth and Environment*, 43(5), 707-719. <https://doi.org/10.1177/0309133319873309>
+
+Rogers, K., Kelleway, J. J., Saintilan, N., Megonigal, J. P., Adams, J. B., Holmquist, J. R., ... & Woodroffe, C. D. (2019). Wetland carbon storage controlled by millennial-scale variation in relative sea-level rise. *Nature*, 567(7746), 91-95. <https://doi.org/10.1038/s41586-019-0951-7>
+
+Holmquist, J. R., Windham-Myers, L., Bernal, B., Byrd, K. B., Crooks, S., Gonneea, M. E., ... & Weller, D. E. (2018). Uncertainty in United States coastal wetland greenhouse gas inventorying. *Environmental Research Letters*, 13(11), 115005. <https://doi.org/10.1088/1748-9326/aae157>
+
+Holmquist, J. R., Windham-Myers, L., Bliss, N., Crooks, S., Morris, J. T., Megonigal, J. P., ... & Woodrey, M. (2018). Accuracy and precision of tidal wetland soil carbon mapping in the conterminous United States. *Scientific reports*, *8*(1), 1-16. <https://doi.org/10.1038/s41598-018-26948-7>

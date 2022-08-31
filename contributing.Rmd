@@ -4,9 +4,9 @@ title: Data Contribution
 
 ### Why contribute data?
 
--   **It will increase the likelihood that your data will be included in future syntheses.** This means more citations, more collaborations, and more publicity of your work. We can also advertise your data to the community through the Coastal Carbon Atlas.
--   **The CCRCN is nested under the Smithsonian, a trusted institution with a legacy of long-term archival.** The Smithsonian has a long history of archiving physical and digital content, as well as high visibility and recognition. Submitting data to the CCRCN will enable you to release your dataset as a distinct DOI, which can be embargoed and versioned, and is stored under one of the Smithsonian Library's digital repositories (the default is Figshare).
--   **Our data clearinghouse is targeted to the coastal carbon community and receptive to feedback.** Because our focus is specialized, as opposed to a more general data repository, our vocabulary and structure is catered to those engaged in coastal carbon science, and we have the capability to quickly respond to new developments and recommendations through our version-controlled data structure.
+-   **It will increase the likelihood that your data will be included in future syntheses.** This means more citations, more collaborations, and more publicity of your work. We can also advertise your data to the community through the [Coastal Carbon Atlas](https://ccrcn.shinyapps.io/CoastalCarbonAtlas/).
+-   **The CCRCN is nested under the Smithsonian, a trusted institution with a legacy of long-term archival.** The Smithsonian has a long history of archiving physical and digital content, as well as high visibility and recognition. Submitting data to the CCRCN will enable you to release your dataset with a unique DOI, which can be embargoed and versioned. This data product is stored in one of the Smithsonian Library's trusted [digital repositories](https://library.si.edu/research/data-repositories), which is typically [Figshare](https://smithsonian.figshare.com/).
+-   **Our data clearinghouse is targeted to the coastal carbon community and receptive to feedback.** Because our focus is specialized, as opposed to a more general data repository, our vocabulary and structure is catered to those engaged in coastal carbon science, and we have the capability to quickly respond to new developments and recommendations through our version-controlled [database structure](https://smithsonian.github.io/CCRCN-Community-Resources/soil_carbon_guidance.html).
 -   **We have full-time staff dedicated to assisting the data carpentry and archival process.** Our staff are happy to assist the process of reformatting data and providing the affiliated licensing and DOI for your data release.
 -   **You decide when and how the data are released to the public.** By establishing an embargo on a data submission, we can ensure that the data are not made public before a certain date, or until you have published with them. Although our default data repository is the research-orientated Figshare, we are able to assist with data releases that will be deposited in other locations, such as a data bank designated by your funding sources.
 
@@ -15,3 +15,17 @@ title: Data Contribution
 Please email [CoastalCarbon\@si.edu](mailto:CoastalCarbon@si.edu) and CCRCN personnel will assist you in the process. Data submissions can remain embargoed for a time specified by the submitter. In embargo cases a data release will be prepared and shared with the submitter via a private dropbox link, until the embargo period ends, the data release is made public, and the dataset is drawn into synthesis products.
 
 If you're interested in using our data templates, please visit this link to download.
+
+<img src="media/ccrcn_data_submission_flowchart.jpg" alt="CCRCN Data Submission Flowchart" align="center"/>
+
+**Testimonials to Data Contribution**
+
+"The Coastal Carbon Research Coordination Network dataset has been invaluable in our recent research identifying global drivers of variability in coastal wetland carbon cycling. The Network's dataset greatly complemented our own previous data collation efforts, filling important gaps in our record. The availability of a comprehensive and well-curated dataset allowed us to focus on the analysis and interpretation of data, deriving important new insights in global patterns of carbon storage."
+
+\- *Jeffrey Kelleway, Department of Environmental Sciences, Macquarie University*
+
+"The CCRCN database is a key cornerstone in accelerating the pace of discovery for coastal carbon cycling.  I recently downloaded version 1, and have begun analylzing it and intercomparing its features with other national and global sets on soil core characteristics. As it focuses only on soilcores from tidal wetland, it is the single largest and spatially explicit empirical dataset, globally, for populating carbon stock assessments or testing models across space and time. For coastal lands, it is an invaulable asset for scientists and managers alike.  The developers of the dataset and platform should be commended, as should the many community contributors who are fueling advances in science and practice by sharing their data."
+
+"[The CCRCN administrators] are doing an amazing job at this organization and promoting inclusivity. I am floored by your intuition and abilities. You are the natural heirs to this community-building."
+
+\- *Lisamarie Windham-Myers, U.S. Geological Survey*

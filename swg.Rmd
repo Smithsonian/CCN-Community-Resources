@@ -1,7 +1,10 @@
 ---
-title: Soils Working Group
-subtitle: Improved measuring, reporting, modeling, and mapping of soil carbon burial rates and carbon stocks in coastal wetlands
+title: Soil Carbon Working Group
 ---
+
+![](./media/soil_carbon_wg_group_photo.jpeg)
+
+This topical working group seeks to improve measuring, reporting, modeling, and mapping of soil carbon burial rates and carbon stocks in coastal wetlands.
 
 ## Research Questions
 
