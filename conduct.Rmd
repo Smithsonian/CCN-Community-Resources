@@ -17,12 +17,12 @@ Members involved in CCRCN collaborations are entitled to their own intellectual 
 
 The Coastal Carbon Research Coordination Network (CCRCN) is dedicated to
 providing a welcoming and supportive environment for all people,
-regardless of background or identity. However, we recognise that some
+regardless of background or identity. However, we recognize that some
 groups in our community are subject to historical and ongoing
 discrimination, and may be vulnerable or disadvantaged. Membership in
 such a specific group can be on the basis of characteristics such as
 gender, sexual orientation, disability, physical appearance, body size,
-race, nationality, sex, colour, ethnic or social origin, pregnancy,
+race, nationality, sex, color, ethnic or social origin, pregnancy,
 citizenship, familial status, veteran status, genetic information,
 religion or belief, political or any other opinion, membership of a
 national minority, property, birth, age, or choice of text editor. We do
@@ -42,7 +42,7 @@ includes but is not limited to:
     following, or intimidation
 -   the display of sexual or violent images
 -   unwelcome sexual attention
--   nonconsensual or unwelcome physical contact
+-   non-consensual or unwelcome physical contact
 -   sustained disruption of talks, events or communications
 -   incitement to violence, suicide, or self-harm
 -   continuing to initiate interaction (including photography or

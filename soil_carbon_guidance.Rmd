@@ -19,7 +19,6 @@ library(reactable)
 library(reactablefmtr)
 ```
 
-
 ```{r echo=FALSE}
 
 # load controlled variables for table nesting

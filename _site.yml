@@ -44,7 +44,12 @@ output:
       collapsed: false
     # toc_depth: 3
     theme: sandstone
-    css: style.css
+    # includes:
+    #   after_body: footer.html
+    # css: style.css
+
+## To Build this Website
+## Click "Build Website" at the top of the Build tab
 
 # Website-building Resources
 # how to make an Rmd website
@@ -52,3 +57,5 @@ output:
 # custom themes    
 # https://www.datadreaming.org/post/r-markdown-theme-gallery/
 # https://rstudio4edu.github.io/rstudio4edu-book/
+# custom footers: https://mdbootstrap.com/docs/standard/navigation/footer/
+

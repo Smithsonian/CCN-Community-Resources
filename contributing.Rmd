@@ -2,6 +2,35 @@
 title: Data Contribution
 ---
 
+Data Discovery
+
+The CCN is committed to increasing access to 
+
+The CCN offers technical assistance to community members in the publication of data. 
+
+Requirements:
+- soil carbon data
+
+### Criteria and Approach
+
+We welcome contributions of soil core-based data from any coastal wetlands. We accept data that is published, soon-to-be published, or unpublished as long as it is/will be available in disaggregated form.
+
+We take a flexible approach when it comes to data contribution, which can require more or less participation on the part of the data contributor. If we are contacted about a data contribution which already has a citable data release and associated DOI, we do the work to ingest the dataset (with attribution), reaching out to the dataset authors to ensure that we are accurately representing their dataset in our synthesis. If the data is unpublished, we can work with the data contributor to prepare a data release and archive their dataset in the Smithsonian's institutional Figshare repository.
+
+Our goal is to meet our data contributors where they are in terms of the time and effort they can put toward aligning their datasets to the CCN database structure and create a data product that best-represents their data within the context of their study. We work to educate our data contributors about the data release process and the information that they will need to provide. We offer the option for the authors to fill out data templates containing table-specific glossaries. We prioritize author input when it comes to study-specific metadata, and encourage data contributors to fill out a Google Survey which provides important, high-quality documentation of metadata at the study, site, and core-level.
+
+If community members contributing data already have a chosen repository for their data that is not Figshare, we can still work with them to assemble the metadata or simply ingest their data when it is released.
+
+<!-- <https://github.com/Smithsonian/CCRCN-Data-Library/blob/main/contributing.md> -->
+
+### Interested in contributing data?
+
+Please email [CoastalCarbon\@si.edu](mailto:CoastalCarbon@si.edu) and CCRCN personnel will assist you in the process. Data submissions can remain embargoed for a time specified by the submitter. In embargo cases a data release will be prepared and shared with the submitter via a private dropbox link, until the embargo period ends, the data release is made public, and the dataset is drawn into synthesis products.
+
+If you're interested in using our data templates, please follow this link to download.
+
+Still unsure?
+
 ### Why contribute data?
 
 -   **It will increase the likelihood that your data will be included in future syntheses.** This means more citations, more collaborations, and more publicity of your work. We can also advertise your data to the community through the [Coastal Carbon Atlas](https://ccrcn.shinyapps.io/CoastalCarbonAtlas/).
@@ -9,12 +38,6 @@ title: Data Contribution
 -   **Our data clearinghouse is targeted to the coastal carbon community and receptive to feedback.** Because our focus is specialized, as opposed to a more general data repository, our vocabulary and structure is catered to those engaged in coastal carbon science, and we have the capability to quickly respond to new developments and recommendations through our version-controlled [database structure](https://smithsonian.github.io/CCRCN-Community-Resources/soil_carbon_guidance.html).
 -   **We have full-time staff dedicated to assisting the data carpentry and archival process.** Our staff are happy to assist the process of reformatting data and providing the affiliated licensing and DOI for your data release.
 -   **You decide when and how the data are released to the public.** By establishing an embargo on a data submission, we can ensure that the data are not made public before a certain date, or until you have published with them. Although our default data repository is the research-orientated Figshare, we are able to assist with data releases that will be deposited in other locations, such as a data bank designated by your funding sources.
-
-### Interested in contributing data?
-
-Please email [CoastalCarbon\@si.edu](mailto:CoastalCarbon@si.edu) and CCRCN personnel will assist you in the process. Data submissions can remain embargoed for a time specified by the submitter. In embargo cases a data release will be prepared and shared with the submitter via a private dropbox link, until the embargo period ends, the data release is made public, and the dataset is drawn into synthesis products.
-
-If you're interested in using our data templates, please visit this link to download.
 
 <img src="media/ccrcn_data_submission_flowchart.jpg" alt="CCRCN Data Submission Flowchart" align="center"/>
 

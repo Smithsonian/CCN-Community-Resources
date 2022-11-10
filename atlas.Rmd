@@ -6,7 +6,8 @@ output:
     toc: false
 ---
 
-![](./media/atlas_screenshot.png)
+<!-- ![](./media/atlas_screenshot.png) -->
+[![](./media/atlas_screenshot.png)](https://ccrcn.shinyapps.io/coastal_carbon_atlas_beta/)
 
 This is a web application designed to visualize, query, and download data from the Coastal Carbon Data Library. The Atlas was launched on Feb 22, 2019 and version 2 is about to debut. Access the Atlas here:
 
