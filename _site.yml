@@ -1,8 +1,8 @@
-name: "ccrcn-community-resources"
+name: "ccn-community-resources"
 output_dir: "docs"
 navbar:
   type: inverse
-  title: "CCRCN Community Resources"
+  title: "CCN Community Resources"
   href: index.html
   left:
     - text: "About"
