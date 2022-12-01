@@ -29,10 +29,14 @@ download_file(
 
 We refer to users as anyone using either data we curate, or synthesis products we create. Data that is curated, but not created, by the Network, should not be attributed to the Network. Users should cite all dataset DOIs and credit the datasets’ original authors. All synthesis products created by the Network and associated collaborators will be listed under a Creative Commons With Attribution license. The Network should be acknowledged and cited appropriately if users utilize any of the data structures, tools, or scripts developed by Network and associated collaborators. We will develop additional tools to assist users in generating lists of citations, but users will be ultimately responsible for correctly citing all data used.
 
-### How do I cite data downloaded from the Atlas?
+**How do I cite data downloaded from the Atlas?**
 
 Data downloaded from the Atlas will include a bibliography tailored to the dataset you have downloaded. Please cite the original data publications as well as the Coastal Carbon Network.
 
-### How to cite the Coastal Carbon Network
+**How to cite the Coastal Carbon Network**
 
-Database citation in progress. Licensing is listed under the [Creative Commons BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Suggested Citation:
+
+Holmquist, James, Klinges, Dave, Lonneman, Michael, Wolfe, Jaxine, and Megonigal, Patrick. (2022) Database: Coastal Carbon Network Data Library. Smithsonian Environmental Research Center. https://github.com/Smithsonian/CCRCN-Data-Library
+
+Licensing is listed under the [Creative Commons BY 4.0](https://creativecommons.org/licenses/by/4.0/).

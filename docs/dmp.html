@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Data Management</title>
+
+<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCN Community Resources</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    About
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="about.html">About the Network</a>
+    </li>
+    <li>
+      <a href="governance.html">Principles and Governance</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="swg.html">Soils Working Group</a>
+    </li>
+    <li>
+      <a href="mwg.html">Methane Working Group</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Products
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="atlas.html">Coastal Carbon Atlas</a>
+    </li>
+    <li>
+      <a href="pubs.html">Publications</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="soil_carbon_guidance.html">Soil Carbon Database</a>
+    </li>
+    <li>
+      <a href="contributing.html">Contributing Data</a>
+    </li>
+    <li>
+      <a href="usepolicy.html">Data Use Policy</a>
+    </li>
+    <li>
+      <a href="dmp.html">Data Management</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Resources
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://serc.si.edu/coastalcarbon/outreach-and-training">Training, Tutorials, and Resources</a>
+    </li>
+    <li>
+      <a href="materials.html">Data Contributor Materials</a>
+    </li>
+    <li>
+      <a href="conduct.html">Conduct and Collaboration</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Data Management</h1>
+
+</div>
+
+
+<div id="types-of-data" class="section level2">
+<h2>Types of Data</h2>
+<p>The Network recognizes three classes of data: (i) data that we curate, (ii) data that we ingest, and (iii) synthesis products we create. Data that we curate will be hosted on Smithsonian Institution (SI) servers, but the original data submitter and funding sources will be credited as the dataset’s creators. Data that we ingest will include both data we curate and data from any outside sources that meet basic availability, archiving, and metadata standards. These data will be pulled into intermediate files in a centralized database using R code. The workflow and files will be archived and publicly available on an SI-managed GitHub website. This document refers to soil depth profile data throughout, but it is our intention that these general structures and principles be applied to other types of data as the Network evolves.</p>
+</div>
+<div id="digital-object-identifiers" class="section level2">
+<h2>Digital Object Identifiers</h2>
+<p>We encourage submitters to use best practices and to assign datasets a citable digital object identifier (DOI), which links to a repository containing downloadable data and associated metadata. We will prioritize ingesting such data into the synthesis. Data submitters can choose to forward DOIs issued outside of the Network for ingestion into the central data structure on the Network’s SI GitHub website. Some DOI-issuing repository services include <a href="https://figshare.com/">Figshare</a> and the <a href="https://environmentaldatainitiative.org/">Environmental Data Initiative</a>. As a service to the community Network personnel can will be available to assist data submitters in archiving data according to outlined standards.</p>
+<p>Submitters also have the option to host data on an SI server, and apply for a DOI through SI libraries, with the submitters credited as a dataset author and Network personnel credited for their curatorial role. Landing pages with summaries of projects, sites, and cores will be viewable on Dspace, and the CCRCN website will advertise a link to the data release. While data will be digitally archived long-term in accordance with SI standards, we cannot guarantee new data will be accepted after Network funding ends.</p>
+<p>While we recognize that there is no official definition for what constitutes a trusted repository, repositories associated with DOIs should in general have community recognition and trust in their long-term stability. For data curated by the Network we hope that SI’s reputation, DSpace’s status as an approved technology, and the SIL’s commitment to digital object curation, generate this level of community trust.</p>
+</div>
+<div id="metadata-standards" class="section level2">
+<h2>Metadata Standards</h2>
+<p>For data curated by the Network, we will use the Environmental Metadata Language standards. This includes an abstract, detailed submitter information, attribute definitions, and data types (e.g. character, factor, numeric, or dateTime). CCRCN personnel will use the R-based <a href="https://cran.rstudio.com/web/packages/EML/">EML</a> package in our workflow to create metadata for data that we curate. Code used to create EML will be documented, and archived in a Smithsonian GitHub repository.</p>
+</div>
+<div id="attribute-names" class="section level2">
+<h2>Attribute Names</h2>
+<p>Attribute names (analogous to column names in a spreadsheet) should follow good management practices<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Attribute names should be self descriptive and machine readable. They should contain no spaces and must not begin with a number or special character; however, underscores (i.e. pothole_case) are acceptable. We will recommend and adopt <a href="Controlled_Attributes_and_Variables.html">controlled vocabulary for attribute naming</a>. Any submitter defined attributes should follow the same naming principles and documentation.</p>
+<p>Units for all attributes need to be defined and in some cases controlled. For some variables which typically have commonly reported units we will recommend submitters format using these controlled units. These include fraction_organic_matter (fraction), dry_bulk_density (g cm<sup>-3</sup>) and latitude and longitude (decimal degrees [world geographic survey 1984]). For attributes that are applicable to the synthesis, but typically have multiple common unit formats, we recommend an accompanying column defining these units. Uncommon data types, or data types not included in synthesis projects, simply need to have units defined in associated metadata.</p>
+<p>Good data practices require consistently formatting no data values and categorical variables. We have adopted the R-based convention of representing no data values as NA for all variable types (never blanks). Categorical variables should have descriptive names stored as text, similar to attribute names. For example, one may code the categorical variable treatments as numeric values 0 and 1 standing in for experimental and control; however, best practices would dictate coding these as descriptive characters (experimental and control) rather than numbers.</p>
+<p>For data we curate we will use controlled vocabulary units and variable types. For data we ingest, we will keep a file of corresponding controlled variables and aliases so that data not complying with controlled vocabulary can still be ingested. We will document transformations made to ingested data to standardize them with the data we curate in R code.</p>
+<div id="proposed-level-of-disaggregation" class="section level3">
+<h3>Proposed Level of Disaggregation</h3>
+<p>In general we believe that there should be community agreement on the finest level of data disaggregation archived for practical use and reuse. This fundamental unit should be the most detailed unit typically used and reported in the literature. For soils data we will stratify by site, by core, and by depth increment. For calculations such as loss-on-ignition and bulk density, data by depth increment will be the fundamental level of archiving. For age-depth information we will archive radiocarbon (<sup>14</sup>C) age ? sd of a sample for <sup>14</sup>C dates, and counts per unit dry weight ? sd of a sample for <sup>210</sup>Pb and <sup>137</sup>Cs profiles.</p>
+</div>
+<div id="hierarchical-structure" class="section level3">
+<h3>Hierarchical Structure</h3>
+<p>We will ingest existing data and curate submitted data in a hierarchical framework. Information associated with submitters, projects, sites, cores, and depth profiles will all be hosted in separate tables related by index codes that are unique. A universal dataset index will be composed of the principal investigator’s family name, as well as the second author or ‘et al’ in the case of more than two authors, then the publication year. Sequential letters will be added to the end (a,b,c, etc.) in case of multiple publications per year (Example: Jane Doe, Lee Fakeman and Ben Mademup’s 2009 paper = Doe_et_al_2009).</p>
+<p><strong>Project metadata</strong> will have an abstract and information about coauthors, associated funding source, or set of funding sources, associated publications, and materials and methods. A project should be a discrete unit of research united by consistent personnel, funding sources, and/or materials and methods. A project can be associated with one or more sites.</p>
+<p><strong>Sites</strong> refer to discrete geographic or management units and are somewhat nebulous, project specific, and submitter defined. A site code should follow the same best practices for variable naming: not starting with a number, descriptive, brief, and meaningful to project documentation and design. Site metadata refer to data associated with the sites, such as location, notes on dominant vegetation types, salinity, and site condition. Although there are no standards for what constitutes a site, and different projects could have different names for the same site, this coding should be consistent within a project. A site can have one or more data sets, including one or more core, plot, or instrument locations.</p>
+<p><strong>Core/Plot/Instrument-Level Data</strong> refer to information specifically about the location of a soil core. This could include positional information such as latitude, longitude, and elevation. It could also include notes that are redundant but more detailed than site metadata, such as vegetation and salinity. Each core should have a unique code within a project. A core code should follow the same best practices for variable naming: not starting with a number, descriptive, brief, and meaningful to project documentation and design. For future syntheses this level of hierarchy could also house other types of data such as vegetation plots or instruments.</p>
+<p><strong>Depth Series Information</strong>: Soil cores have depth-series information which should include minimum and maximum depth increments, as well as measurements presented in their fundamental unit (explained above), with associated methods notes, and uncertainties. If replicate samples are taken from the same depth increment then these can be distinguished with a sample code. These can be submitter defined, but should conform to general principles for variable naming. In future syntheses time-series data could also be archived in this format with instrument replacing a core, and time replacing depth.</p>
+</div>
+</div>
+<div id="data-storage" class="section level2">
+<h2>Data Storage</h2>
+<p>Tabular data will be stored in a flat text file, meaning that no data formatting will be included. We will default to using tab-delimited text files (.txt) for simplicity. Although comma separated values .csv are also common, these types of files can be corrupted if commas are ever used within a variable rather than to delineate variables. Submissions that are received in other formats, such Microsoft Excel files, will be edit-locked and archived as submission documents. However, a working version of this submission will be formatted according to Network standards in flat text files.</p>
+<p>Tabular data will be stored in long-form tables, as opposed to wide-form tables. Each column should correspond to one variable, each row should correspond to one entry. Each column needs to have a single data type, and represent only one variable. Extra information such as units, notes, or operator code will not be encoded as an excel note, cell color, or be included in the same cell as a value.</p>
+</div>
+<div id="quality-control" class="section level2">
+<h2>Quality Control</h2>
+<p>Network personnel will perform a cursory visual check on all data we curate and relay any concerns to the data submitter during the curation process. We will also write scripts to check data type, to check that values for each attribute are in defined bounds if applicable (such as 0 to 1 for fractions), to check for completeness, and to ensure there are no conflicts or duplicates with previously archived data. For data that we curate, files will be edit-locked following QA:QC. Any updates or corrections will result in a new named version of the file, a change logged by Network personnel in a text file associated with the data, and a note of the change sent to the next update of the Network email list members.</p>
+</div>
+<div id="submitting-data" class="section level2">
+<h2>Submitting Data</h2>
+<p>If you are interested in submitting data, please email <a href="mailto:CoastalCarbon@si.edu" class="email">CoastalCarbon@si.edu</a> and CCRCN personnel will assist you in the process. We are working on building a webportal to automate a lot of this exchange, but until we do so this will remain a very friendly peer to peer handoff system. Data submissions can remain embargoed for a time specified by the submitter. In embargo cases a data release will be prepared and shared with the submitter via a private dropbox link, until the embargo period ends, the data release is made public, and the dataset is drawn into synthesis products.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Wilson G, Bryan J, Cranston K, Kitzes J, Nederbragt L, Teal TK (2017) Good enough practices in scientific computing. PLoS Comput Biol 13(6): e1005510. <a href="https://doi.org/10.1371/journal.pcbi.1005510" class="uri">https://doi.org/10.1371/journal.pcbi.1005510</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

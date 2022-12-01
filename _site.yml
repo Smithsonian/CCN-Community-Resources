@@ -6,35 +6,44 @@ navbar:
   href: index.html
   left:
     - text: "About"
-      href: about.html
-    - text: "Projects"
+      menu:
+        - text: "About the Network"
+          href: about.html
+        - text: "Principles and Governance"
+          href: governance.html
+        # - text: "Working Groups"
+        #   href: groups.html
+    - text: "Working Groups"
       menu:
         - text: "Soils Working Group"
           href: swg.html
         - text: "Methane Working Group"
-          href: mwg.html 
-        # - text: "Blue Carbon Inventorying"
+          href: mwg.html
     - text: "Products"
       menu:
         - text: "Coastal Carbon Atlas"
           href: atlas.html
-        - text: "Blue Carbon Data Inventory"
-          href: https://smithsonian.github.io/CCRCN-Pew-Project/
         - text: "Publications"
           href: pubs.html
     - text: "Data"
       menu:
-        - text: "Soils Database"
+        - text: "Soil Carbon Database"
           href: soil_carbon_guidance.html
         - text: "Contributing Data"
           href: contributing.html
         - text: "Data Use Policy"
           href: usepolicy.html
+        - text: "Data Management"
+          href: dmp.html
     - text: "Resources"
       menu:
         - text: "Training, Tutorials, and Resources"
           href: https://serc.si.edu/coastalcarbon/outreach-and-training
-        - text: "Principles and Governance"
+        - text: "Data Contributor Materials"
+          href: materials.html
+        - text: "Join the Network"
+          href: join.html
+        - text: "Conduct and Collaboration"
           href: conduct.html
 
 output:

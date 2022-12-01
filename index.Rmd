@@ -10,33 +10,58 @@ library(fontawesome)
 
 *Description of the purpose of this website.*
 
-## Quick Links
+## News and Announcements
 
-## Network News (Announcements)
+**Read the CCRCN Blue Carbon Inventory Report**
 
-## Join the Network
+The CCRCN collaborated with Pew Charitable Trusts to produce a report on the [state of blue carbon data](https://smithsonian.github.io/CCRCN-Pew-Project/) in the contiguous United States. In this first-ever inventory of our database, we assess the quantity, quality, and representativeness of soil core data on a state-by-state basis. Check out the [national overview](https://smithsonian.github.io/CCRCN-Pew-Project/analysis.html#national-overview) to find out how your state scores on our blue carbon data report card!
 
-**Stay up to date with the CCRCN**
+**Join us for our Annual Town Hall at AGU**
 
--   Follow our [twitter](https://twitter.com/coastalcarbon) `r fa("twitter", fill = "blue")`
--   Subscribe to our [Monthly Newsletter.](https://serc.us3.list-manage.com/subscribe?u=af8134afadeb9e6ccf2e10d07&id=28668d9617) `r fa("envelope", fill = "steelblue")`
+Mark your AGU 2019 Calendars for our annual Townhall on Thursday Night at 6:15 pm Moscone West - 2014, L3. Come learn about the network, get progress updates from our working groups and your input on how we use our next three years.
 
-**CCN Newsletter Archive**
+**Take our Expert Elicitation Survey**
 
-- [July 2019](https://us3.campaign-archive.com/?u=af8134afadeb9e6ccf2e10d07&id=ba4c6a2843)
-- [June 2019](https://mailchi.mp/b070a131b16c/coastal-carbon-rcn-may-updates-3124911?e=%5BUNIQID%5D)                   
-- [May 2019](https://mailchi.mp/29f70cf76ff0/coastal-carbon-rcn-may-updates?e=%5BUNIQID%5D)                            
-- [April 2019](https://mailchi.mp/78c4e9b20310/coastal-carbon-rcn-april-updates?e=%5BUNIQID%5D)                        
-- [March 2019](https://mailchi.mp/3d3c5289da41/coastal-carbon-rcn-march-updates?e=%5BUNIQID%5D)                        
-- [February 2019](https://mailchi.mp/2ffbefe551c5/coastal-carbon-rcn-feb-updates?e=3dc32f61d7)                         
-- [January 2019](https://mailchi.mp/d4fad8ae525b/coastal-carbon-rcn-jan-updates)                                       
-- [December 2018](https://mailchi.mp/749bb6fc77f4/reminder-tonight-ccrcn-agu-town-hall)                                
-- [November 2018](https://mailchi.mp/e0a9bcb4b17c/coastal-carbon-rcn-november-updates)                                 
-- [October 2018](https://mailchi.mp/dc13b79c9d90/coastal-carbon-rcn-oct-updates)                                       
-- [September 2018](https://mailchi.mp/70475e459e4c/coastal-carbon-rcn-sept-updates)                                    
-- [August 2018](https://mailchi.mp/11cc95d06f5f/coastal-carbon-rcn-aug-updates)                                        
-- [July 2018](https://mailchi.mp/6bdffa4a4a66/coastal-carbon-rcn-july-updates-workshops-and-soils-data) and [addendum](https://mailchi.mp/a5b1703b726b/july-ccrcn-addendum-agu-sessions)
-- [June 2018](https://mailchi.mp/2a14649fd2cc/june-announcements-apply-for-a-working-group)                            
-- [May 2018](https://mailchi.mp/9b6398000e60/may-announcements-a-call-to-action) and [correction](http://mailchi.mp/e1d896b10ee1/correction-for-call-to-actioncorrection)
-- [April 2018](https://mailchi.mp/9ca203022b18/24-hours-left-for-public-comment)                                       
-- [March 2018](https://mailchi.mp/4246ff17c5fa/public-comment-open-for-governance-and-data-management-documents)
+Are you an expert on belowground plant traits and/or decay properties in tidal wetlands? Spend 15 to 30 minutes with our expert elicitation application and give us your best educated guess on several hard to measure traits. The survey is anonymous and will be used to inform our priors for a Bayesian data-model integration study.
+
+Archive
+
+**Recording of Coastal Carbon Atlas Webinar**
+
+Missed our webinar on the Network and our Coastal Carbon Atlas? Thanks to host Restore America's Estuaries (RAE), a [recording is available online.](https://www.youtube.com/watch?v=sEcu1kZAs-o) This presentation was part of RAE's Blue Carbon in Practice webinar series which featured discussions on new policy, research, and tools in the field.
+
+**Feature in SERC *Shorelines* Blog**
+
+The Smithsonian's coastal newsletter *On the Edge* ([Spring 2019](https://serc.si.edu/sites/default/files/pictures/newsletters/serc_newsletter_spring2019_final.pdf)) featured a cover story on the CCRCN's data synthesis and modeling efforts related to carbon storage, and provides a clean overview of the importance of carbon (and especially methane) accounting. [Check out the full story here](https://sercblog.si.edu/rethinking-carbon/).
+
+**Introducing the Coastal Carbon Atlas**
+
+The CCRCN is pleased to announce the public release of the Coastal Carbon Atlas as a feature of our Data Clearinghouse. Using this web map portal, you can visualize, query, and download directly from the CCRCN database, and provided with raw data is helpful resources and a catered bibliography. Click here to learn more about the CCRCN Data Clearinghouse.
+
+**Welcome to New Steering Committee Members**
+
+Thanks to Members Emeritus We would like to welcome Dr. Steve Crooks, Dr. Patty Oikawa, and Dr. Ken Krauss to our Steering Committee, congratulations! We would also like to deeply thank Dr. Lisamarie Windham-Myers and Dr. Kevin Kroeger, who are rotating off of our steering committee, for their vital service in getting the CCRCN funded and for advising us during our first year. Read about the CCRCN administration here.
+
+**CCRCN Hosts Successful Inaugural Working Group**
+
+On December 8-9 2018, 17 members of the Soil Carbon working group convened at the Smithsonian Environmental Research Center, integrating biogeochemical, geospatial, botanical, and geomorphological expertise to accelerate modeling and mapping efforts. Learn more about the working group here.
+
+Now Accepting Nominations for our Steering Committee
+
+**Soil Carbon Working Group Up and Running**
+
+The CCRCN's inaugural working group began collaborating in July. The group seeks to determine how much variation in carbon stocks and burial rates is attributable to scientific practices versus environmental covariates, and to develop map and model products. Learn more on the Soil Carbon Working Group page.
+
+**Learn Data Manipulation with CCN R Coding Tutorials**
+
+We have just made available a suite of coding tutorials that utilize RStudio and tidyverse packages to teach data manipulation and visualization skills. These exercises, which are geared towards the introductory R user, enable you to explore the CCRCN Soil Carbon Data Release (version 1), but also will improve data skills related to your own projects.
+
+Check out the coding tutorials here.
+
+**2017 National Greenhouse Gas Inventory**
+
+The CCN participated in a literature review and data synthesis supporting the 2017 U.S. Coastal Wetland National Greenhouse Gas Inventory. The workflow, summary tables, and resulting report are hosted in the [Coastal Wetland NGGI](https://github.com/Smithsonian/Coastal-Wetland-NGGI-Data-Public) repository on the Smithsonian Github.
+
+Past Events
+
+CCRCN Town Hall at AGU Fall Meeting, December 13 2018 The CCRCN will be hosting another town hall at the American Geophysical Union Fall meeting, December 10-14 2018. The town hall will be held from 18:15-19:15 on Thursday, December 13 in in the Marriott Marquis. Learn more about the town hall here.
