@@ -13,8 +13,8 @@
 
 <title>Principles and Governance</title>
 
-<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -63,6 +63,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -83,6 +84,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -140,11 +144,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -173,8 +181,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -182,16 +190,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -314,7 +315,7 @@ div.tocify {
 <div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -324,7 +325,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     About
      
     <span class="caret"></span>
@@ -334,27 +335,15 @@ div.tocify {
       <a href="about.html">About the Network</a>
     </li>
     <li>
+      <a href="groups.html">Working Groups</a>
+    </li>
+    <li>
       <a href="governance.html">Principles and Governance</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Projects
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="swg.html">Soils Working Group</a>
-    </li>
-    <li>
-      <a href="mwg.html">Methane Working Group</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Products
      
     <span class="caret"></span>
@@ -369,7 +358,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Data
      
     <span class="caret"></span>
@@ -390,7 +379,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Resources
      
     <span class="caret"></span>
@@ -401,6 +390,9 @@ div.tocify {
     </li>
     <li>
       <a href="materials.html">Data Contributor Materials</a>
+    </li>
+    <li>
+      <a href="join.html">Join the Network</a>
     </li>
     <li>
       <a href="conduct.html">Conduct and Collaboration</a>
@@ -424,50 +416,160 @@ div.tocify {
 </div>
 
 
-<p>The goal of the Coastal Carbon Research Coordination Network (CCRCN) is to accelerate the pace of discovery in coastal wetland carbon science by providing our community with access to data, analysis tools, and synthesis opportunities. Our activities include bringing data libraries online, creating open source analysis and modeling tools, providing training and outreach opportunities, holding town halls, responding to community feedback, and hosting data synthesis workshops targeted at strategically reducing uncertainty in coastal carbon science issues. Our first focal activity is building a public online data library of soil carbon data.</p>
-<p>The Coastal Carbon Research Coordination Network (herein Network) builds on work by the Blue Carbon Initiative, the NASA Blue Carbon Monitoring System, and the US Carbon Cycle Science Program. Our data management principles incorporate experience from these efforts, and best practices developed in collaboration with data management specialists across the Smithsonian and our partner institutions.</p>
+<p>The goal of the Coastal Carbon Research Coordination Network (CCRCN)
+is to accelerate the pace of discovery in coastal wetland carbon science
+by providing our community with access to data, analysis tools, and
+synthesis opportunities. Our activities include bringing data libraries
+online, creating open source analysis and modeling tools, providing
+training and outreach opportunities, holding town halls, responding to
+community feedback, and hosting data synthesis workshops targeted at
+strategically reducing uncertainty in coastal carbon science issues. Our
+first focal activity is building a public online data library of soil
+carbon data.</p>
+<p>The Coastal Carbon Research Coordination Network (herein Network)
+builds on work by the Blue Carbon Initiative, the NASA Blue Carbon
+Monitoring System, and the US Carbon Cycle Science Program. Our data
+management principles incorporate experience from these efforts, and
+best practices developed in collaboration with data management
+specialists across the Smithsonian and our partner institutions.</p>
 <div id="core-principles" class="section level2">
 <h2>Core Principles</h2>
 <ol style="list-style-type: decimal">
-<li>We are responsive to a global community of scientists and practitioners.</li>
-<li>We focus on quantifiable improvements to the state of the science.</li>
-<li>We adopt protocols, policies, and communication platforms that facilitate transparency, ease of adoption, program sustainability, and data stability.</li>
+<li>We are responsive to a global community of scientists and
+practitioners.</li>
+<li>We focus on quantifiable improvements to the state of the
+science.</li>
+<li>We adopt protocols, policies, and communication platforms that
+facilitate transparency, ease of adoption, program sustainability, and
+data stability.</li>
 </ol>
 </div>
-<div id="defined-roles-and-responsibilities-within-the-ccrcn" class="section level2">
+<div id="defined-roles-and-responsibilities-within-the-ccrcn"
+class="section level2">
 <h2>Defined Roles and Responsibilities within the CCRCN</h2>
 <ul>
-<li><strong>Principle Investigators</strong> - Emmett Duffy, Patrick Megonigal, and James Holmquist are responsible for executing the project as proposed to NSF, reporting to NSF on project progress, and carrying out the fiduciary requirements of the grant.</li>
-<li><strong>Director</strong> - The Director (Patrick Megonigal) is responsible for directing the activities of the Principal Investigators, and overall management of the Network.</li>
-<li><strong>Manager</strong> - The Manager (currently James Holmquist) is hired by the Director with input from the steering committee. The manager is responsible for leading the daily activities of the Network, responding to stakeholders, and interacting with the Steering Committee.</li>
-<li><strong>Steering Committee Members</strong> - Steering committee members are responsible for advising the Director and Manager on Network management, adherence to core principles, workshop topics, and evaluating steering committee nominees.</li>
-<li><strong>CCRCN Personnel</strong> - Principal Investigators, the Steering Committee, and people with official Smithsonian affiliations who work on Network-related tasks. Personnel are responsible for implementing the activities of the Network.</li>
-<li><strong>Collaborators / Collaborating Organizations</strong> - Collaborators include researchers who are not Network personnel, but are otherwise actively contributing to Network products in collaboration with Network personnel, or as part of data synthesis workshops. Collaborators are expected to participate at the level of co-author on synthesis products. Collaborating Organization responsibilities are similar to Collaborators except the organization and the Network have entered into a memorandum of understanding to formalize expectations with respect to the Network. Collaborating organizations are expected to explore financial support of activities that are not supported by the NSF funding that established the Network, and to explore opportunities to secure funding to support Network activities beyond the initial five years of NSF funding.</li>
-<li><strong>Partners / Partner Organizations</strong> - Include anyone engaged in any Network activities, but more informally than Collaborators. These include remote consultations, town halls, Twitter, webinars, online surveys, and participating in public comment periods. The best way to be recognized as a partner is to sign up for regular Network email updates. Partner Organizations include any organizations that interact with the Network in a manner similar to Partners, but have entered into a memorandum of understanding with the Network that formalizes activities such as consultation or other non-monetary support for Network goals.</li>
-<li><strong>Users</strong> - Anyone using data structures or synthesis products created by the Network. There is no obligation to involve Network personnel or collaborators in individual research efforts beyond the workshops funded by the Network NSF grant. Users are responsible for properly citing Network synthesis products, and properly citing original authors when datasets curated or synthesized by the Network are downloaded and reused. See the <a href="#data-use-policy">Data Use Policy</a>.</li>
+<li><strong>Principle Investigators</strong> - Emmett Duffy, Patrick
+Megonigal, and James Holmquist are responsible for executing the project
+as proposed to NSF, reporting to NSF on project progress, and carrying
+out the fiduciary requirements of the grant.</li>
+<li><strong>Director</strong> - The Director (Patrick Megonigal) is
+responsible for directing the activities of the Principal Investigators,
+and overall management of the Network.</li>
+<li><strong>Manager</strong> - The Manager (currently James Holmquist)
+is hired by the Director with input from the steering committee. The
+manager is responsible for leading the daily activities of the Network,
+responding to stakeholders, and interacting with the Steering
+Committee.</li>
+<li><strong>Steering Committee Members</strong> - Steering committee
+members are responsible for advising the Director and Manager on Network
+management, adherence to core principles, workshop topics, and
+evaluating steering committee nominees.</li>
+<li><strong>CCRCN Personnel</strong> - Principal Investigators, the
+Steering Committee, and people with official Smithsonian affiliations
+who work on Network-related tasks. Personnel are responsible for
+implementing the activities of the Network.</li>
+<li><strong>Collaborators / Collaborating Organizations</strong> -
+Collaborators include researchers who are not Network personnel, but are
+otherwise actively contributing to Network products in collaboration
+with Network personnel, or as part of data synthesis workshops.
+Collaborators are expected to participate at the level of co-author on
+synthesis products. Collaborating Organization responsibilities are
+similar to Collaborators except the organization and the Network have
+entered into a memorandum of understanding to formalize expectations
+with respect to the Network. Collaborating organizations are expected to
+explore financial support of activities that are not supported by the
+NSF funding that established the Network, and to explore opportunities
+to secure funding to support Network activities beyond the initial five
+years of NSF funding.</li>
+<li><strong>Partners / Partner Organizations</strong> - Include anyone
+engaged in any Network activities, but more informally than
+Collaborators. These include remote consultations, town halls, Twitter,
+webinars, online surveys, and participating in public comment periods.
+The best way to be recognized as a partner is to sign up for regular
+Network email updates. Partner Organizations include any organizations
+that interact with the Network in a manner similar to Partners, but have
+entered into a memorandum of understanding with the Network that
+formalizes activities such as consultation or other non-monetary support
+for Network goals.</li>
+<li><strong>Users</strong> - Anyone using data structures or synthesis
+products created by the Network. There is no obligation to involve
+Network personnel or collaborators in individual research efforts beyond
+the workshops funded by the Network NSF grant. Users are responsible for
+properly citing Network synthesis products, and properly citing original
+authors when datasets curated or synthesized by the Network are
+downloaded and reused. See the <a href="#data-use-policy">Data Use
+Policy</a>.</li>
 </ul>
 </div>
 <div id="steering-committee-membership" class="section level2">
 <h2>Steering Committee Membership</h2>
-<p>The three Principal Investigators are permanent members of the Steering Committee. Five additional members will be chosen to assist the Network with existing or emerging needs as identified by the Steering Committee. In principle, the members should represent a range of stakeholder interests and technical expertise. Members serve for one year, but can be reappointed for one year at the discretion of the Director. Candidates for the steering committee can nominate themselves or be nominated by their colleagues. The steering committee will vote on replacements, and members stepping down will help to choose their own replacement. Rotations are staggered so that no more than half of the rotating members on the Steering Committee are replaced in a given year.</p>
+<p>The three Principal Investigators are permanent members of the
+Steering Committee. Five additional members will be chosen to assist the
+Network with existing or emerging needs as identified by the Steering
+Committee. In principle, the members should represent a range of
+stakeholder interests and technical expertise. Members serve for one
+year, but can be reappointed for one year at the discretion of the
+Director. Candidates for the steering committee can nominate themselves
+or be nominated by their colleagues. The steering committee will vote on
+replacements, and members stepping down will help to choose their own
+replacement. Rotations are staggered so that no more than half of the
+rotating members on the Steering Committee are replaced in a given
+year.</p>
 </div>
 <div id="data-synthesis-workshops" class="section level2">
 <h2>Data Synthesis Workshops</h2>
-<p>Data synthesis products led by the Network will be developed over the course of five workshops organized and led by Network personnel and collaborators. Potential collaborators can <a href="https://serc.si.edu/coastalcarbon/working-group-application">propose a workshop, or apply to participate in workshops</a>. The Steering Committee will vote on topics and participants for each workshop, which will typically have 12-15 participants.</p>
+<p>Data synthesis products led by the Network will be developed over the
+course of five workshops organized and led by Network personnel and
+collaborators. Potential collaborators can <a
+href="https://serc.si.edu/coastalcarbon/working-group-application">propose
+a workshop, or apply to participate in workshops</a>. The Steering
+Committee will vote on topics and participants for each workshop, which
+will typically have 12-15 participants.</p>
 </div>
 <div id="coauthorship-policy" class="section level2">
 <h2>Coauthorship Policy</h2>
-<p>Those accepted to participate in any of the five synthesis workshops hosted by the Network will be expected to contribute before, during, and following the workshop, and will be granted co-authorship on publications resulting from the effort. We will follow the <a href="https://harassment.agu.org/files/2017/08/ScientificIntegrityandProfessionalEthics_25August2017.pdf">American Geophysical Union’s 2017 Scientific and Professional Ethics: Guideline B. Ethical Obligations of Authors/Contributors for determining co-authorship</a>. Submitting data to the network alone will not merit co-authorship in data syntheses. If done according to the protocols established herein, it will result in citation.</p>
-<p>Co-authorship policies in data sharing exercises often benefit established researchers from western industrialized nations at the expense of those from groups with less institutional power <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. We commit to adopting policies and technologies that facilitate engagement of students, people with indigenous knowledge, and researchers from low and middle income countries as attendees and co-authors in synthesis activities. This policy will be implemented within the limits of NSF CCRCN grant resources.</p>
+<p>Those accepted to participate in any of the five synthesis workshops
+hosted by the Network will be expected to contribute before, during, and
+following the workshop, and will be granted co-authorship on
+publications resulting from the effort. We will follow the <a
+href="https://harassment.agu.org/files/2017/08/ScientificIntegrityandProfessionalEthics_25August2017.pdf">American
+Geophysical Union’s 2017 Scientific and Professional Ethics: Guideline
+B. Ethical Obligations of Authors/Contributors for determining
+co-authorship</a>. Submitting data to the network alone will not merit
+co-authorship in data syntheses. If done according to the protocols
+established herein, it will result in citation.</p>
+<p>Co-authorship policies in data sharing exercises often benefit
+established researchers from western industrialized nations at the
+expense of those from groups with less institutional power <a
+href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. We commit
+to adopting policies and technologies that facilitate engagement of
+students, people with indigenous knowledge, and researchers from low and
+middle income countries as attendees and co-authors in synthesis
+activities. This policy will be implemented within the limits of NSF
+CCRCN grant resources.</p>
 </div>
 <div id="data-use-policy" class="section level2">
 <h2>Data Use Policy</h2>
-<p>We refer to users as anyone using either data we curate, or synthesis products we create. Data that is curated, but not created, by the Network, should not be attributed to the Network. Users should cite all dataset DOIs and credit the datasets’ original authors. All synthesis products created by the Network and associated collaborators will be listed under a Creative Commons With Attribution license. The Network should be acknowledged and cited appropriately if users utilize any of the data structures, tools, or scripts developed by Network and associated collaborators. We will develop additional tools to assist users in generating lists of citations, but users will be ultimately responsible for correctly citing all data used.</p>
+<p>We refer to users as anyone using either data we curate, or synthesis
+products we create. Data that is curated, but not created, by the
+Network, should not be attributed to the Network. Users should cite all
+dataset DOIs and credit the datasets’ original authors. All synthesis
+products created by the Network and associated collaborators will be
+listed under a Creative Commons With Attribution license. The Network
+should be acknowledged and cited appropriately if users utilize any of
+the data structures, tools, or scripts developed by Network and
+associated collaborators. We will develop additional tools to assist
+users in generating lists of citations, but users will be ultimately
+responsible for correctly citing all data used.</p>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
-<li id="fn1"><p>Serwadda D, Ndebele P, Grabowski MK, Bajunirwe F, Wanyenze RK (2018). Open data sharing and the Global South: Who benefits?. Science, 359(6376), 642-643.<a href="https://doi.org/10.1126/science.aap8395">https://doi.org/10.1126/science.aap8395</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>Serwadda D, Ndebele P, Grabowski MK, Bajunirwe F,
+Wanyenze RK (2018). Open data sharing and the Global South: Who
+benefits?. Science, 359(6376), 642-643.<a
+href="https://doi.org/10.1126/science.aap8395">https://doi.org/10.1126/science.aap8395</a><a
+href="#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
@@ -509,6 +611,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

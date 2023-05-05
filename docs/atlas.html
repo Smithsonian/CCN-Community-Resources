@@ -13,8 +13,8 @@
 
 <title>The Coastal Carbon Atlas</title>
 
-<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -60,6 +60,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -80,6 +81,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -137,11 +141,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -170,8 +178,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -179,16 +187,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -232,7 +233,7 @@ $(document).ready(function () {
 <div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -242,7 +243,7 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     About
      
     <span class="caret"></span>
@@ -252,27 +253,15 @@ $(document).ready(function () {
       <a href="about.html">About the Network</a>
     </li>
     <li>
+      <a href="groups.html">Working Groups</a>
+    </li>
+    <li>
       <a href="governance.html">Principles and Governance</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Projects
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="swg.html">Soils Working Group</a>
-    </li>
-    <li>
-      <a href="mwg.html">Methane Working Group</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Products
      
     <span class="caret"></span>
@@ -287,7 +276,7 @@ $(document).ready(function () {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Data
      
     <span class="caret"></span>
@@ -308,7 +297,7 @@ $(document).ready(function () {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Resources
      
     <span class="caret"></span>
@@ -319,6 +308,9 @@ $(document).ready(function () {
     </li>
     <li>
       <a href="materials.html">Data Contributor Materials</a>
+    </li>
+    <li>
+      <a href="join.html">Join the Network</a>
     </li>
     <li>
       <a href="conduct.html">Conduct and Collaboration</a>
@@ -344,10 +336,14 @@ $(document).ready(function () {
 
 
 <!-- ![](./media/atlas_screenshot.png) -->
-<p><a href="https://ccrcn.shinyapps.io/coastal_carbon_atlas_beta/"><img src="media/atlas_screenshot.png" /></a></p>
-<p>This is a web application designed to visualize, query, and download data from the Coastal Carbon Data Library. The Atlas was launched on Feb 22, 2019 and version 2 is about to debut. Access the Atlas here:</p>
+<p><a href="https://ccrcn.shinyapps.io/coastal_carbon_atlas_beta/"><img
+src="media/atlas_screenshot.png" /></a></p>
+<p>This is a web application designed to visualize, query, and download
+data from the Coastal Carbon Data Library. The Atlas was launched on Feb
+22, 2019 and version 2 is about to debut. Access the Atlas here:</p>
 <div id="the-coastal-carbon-atlas" class="section level3">
-<h3><a href="https://ccrcn.shinyapps.io/CoastalCarbonAtlas/">The Coastal Carbon Atlas</a></h3>
+<h3><a href="https://ccrcn.shinyapps.io/CoastalCarbonAtlas/">The Coastal
+Carbon Atlas</a></h3>
 <!-- <body style="margin:0px;padding:0px;overflow:hidden"> -->
 <!-- <iframe src="https://ccrcn.shinyapps.io/CoastalCarbonAtlas/" frameborder="0" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%"></iframe> -->
 <!-- </body> -->

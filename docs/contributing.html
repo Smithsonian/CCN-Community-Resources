@@ -13,8 +13,8 @@
 
 <title>Data Contribution</title>
 
-<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -63,6 +63,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -83,6 +84,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -140,11 +144,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -173,8 +181,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -182,16 +190,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -314,7 +315,7 @@ div.tocify {
 <div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -324,7 +325,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     About
      
     <span class="caret"></span>
@@ -334,27 +335,15 @@ div.tocify {
       <a href="about.html">About the Network</a>
     </li>
     <li>
+      <a href="groups.html">Working Groups</a>
+    </li>
+    <li>
       <a href="governance.html">Principles and Governance</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Projects
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="swg.html">Soils Working Group</a>
-    </li>
-    <li>
-      <a href="mwg.html">Methane Working Group</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Products
      
     <span class="caret"></span>
@@ -369,7 +358,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Data
      
     <span class="caret"></span>
@@ -390,7 +379,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Resources
      
     <span class="caret"></span>
@@ -401,6 +390,9 @@ div.tocify {
     </li>
     <li>
       <a href="materials.html">Data Contributor Materials</a>
+    </li>
+    <li>
+      <a href="join.html">Join the Network</a>
     </li>
     <li>
       <a href="conduct.html">Conduct and Collaboration</a>
@@ -424,42 +416,147 @@ div.tocify {
 </div>
 
 
-<p>Data sharing is a fundamental part of the Coastal Carbon Network’s (CCN) goal to increase data discovery and access in coastal wetland carbon science. Our Network serves as a global convener of coastal blue carbon data, and we seek to make sure that the information which we are serving reflects the scope and investment of the research community. Our Network data sharing activities are based on trust, and it is important that we maintain the provenance of every dataset and provide credit to every researcher who produced it. Read more on these values <a href="https://smithsonian.github.io/CCN-Community-Resources/usepolicy.html">here</a>.</p>
+<p>Data sharing is a fundamental part of the Coastal Carbon Network’s
+(CCN) goal to increase data discovery and access in coastal wetland
+carbon science. Our Network serves as a global convener of coastal blue
+carbon data, and we seek to make sure that the information which we are
+serving reflects the scope and investment of the research community. Our
+Network data sharing activities are based on trust, and it is important
+that we maintain the provenance of every dataset and provide credit to
+every researcher who produced it. Read more on these values <a
+href="https://smithsonian.github.io/CCN-Community-Resources/usepolicy.html">here</a>.</p>
 <div id="why-contribute-data" class="section level3">
 <h3>Why Contribute Data?</h3>
 <ul>
-<li><strong>It will increase the likelihood that your data will be included in future syntheses.</strong> This means more citations, more collaborations, and more publicity of your work. We can also advertise your data to the community through the <a href="https://ccrcn.shinyapps.io/CoastalCarbonAtlas/">Coastal Carbon Atlas</a>.</li>
-<li><strong>The CCN is nested under the Smithsonian, a trusted institution with a legacy of long-term archival.</strong> The Smithsonian has a long history of archiving physical and digital content, as well as high visibility and recognition. Submitting data to the CCN will enable you to release your dataset with a unique digital object identifier (DOI), which can be embargoed and versioned. This data product is stored in one of the Smithsonian Library’s trusted <a href="https://library.si.edu/research/data-repositories">digital repositories</a>, which is typically <a href="https://smithsonian.figshare.com/">Figshare</a>.</li>
-<li><strong>Our Data Library is targeted to the coastal carbon community and receptive to feedback.</strong> Because our focus is specialized, as opposed to a more general data repository, our vocabulary and structure is catered to those engaged in coastal carbon science, and we have the capability to quickly respond to new developments and recommendations through our version-controlled <a href="https://smithsonian.github.io/CCN-Community-Resources/soil_carbon_guidance.html">database structure</a>.</li>
-<li><strong>We have full-time staff dedicated to assisting the data curation and archival process.</strong> Our staff are happy to assist the process of reformatting data and providing the affiliated licensing and DOI for your data release.</li>
-<li><strong>You decide when and how the data are released to the public.</strong> If CCN personnel are assisting you in the assembly of a data release, we ensure that the data remain private until permission is granted by the participating author(s). We can also ensure that the data are not made public before a certain date by establishing a full (data and metadata) or partial (data only) embargo. Although our default data repository is the research-orientated Figshare, we are able to assist with data releases that will be deposited in other locations, such as a data bank designated by your funding sources.</li>
+<li><strong>It will increase the likelihood that your data will be
+included in future syntheses.</strong> This means more citations, more
+collaborations, and more publicity of your work. We can also advertise
+your data to the community through the <a
+href="https://ccrcn.shinyapps.io/CoastalCarbonAtlas/">Coastal Carbon
+Atlas</a>.</li>
+<li><strong>The CCN is nested under the Smithsonian, a trusted
+institution with a legacy of long-term archival.</strong> The
+Smithsonian has a long history of archiving physical and digital
+content, as well as high visibility and recognition. Submitting data to
+the CCN will enable you to release your dataset with a unique digital
+object identifier (DOI), which can be embargoed and versioned. This data
+product is stored in one of the Smithsonian Library’s trusted <a
+href="https://library.si.edu/research/data-repositories">digital
+repositories</a>, which is typically <a
+href="https://smithsonian.figshare.com/">Figshare</a>.</li>
+<li><strong>Our Data Library is targeted to the coastal carbon community
+and receptive to feedback.</strong> Because our focus is specialized, as
+opposed to a more general data repository, our vocabulary and structure
+is catered to those engaged in coastal carbon science, and we have the
+capability to quickly respond to new developments and recommendations
+through our version-controlled <a
+href="https://smithsonian.github.io/CCN-Community-Resources/soil_carbon_guidance.html">database
+structure</a>.</li>
+<li><strong>We have full-time staff dedicated to assisting the data
+curation and archival process.</strong> Our staff are happy to assist
+the process of reformatting data and providing the affiliated licensing
+and DOI for your data release.</li>
+<li><strong>You decide when and how the data are released to the
+public.</strong> If CCN personnel are assisting you in the assembly of a
+data release, we ensure that the data remain private until permission is
+granted by the participating author(s). We can also ensure that the data
+are not made public before a certain date by establishing a full (data
+and metadata) or partial (data only) embargo. Although our default data
+repository is the research-orientated Figshare, we are able to assist
+with data releases that will be deposited in other locations, such as a
+data bank designated by your funding sources.</li>
 </ul>
 <p><img src="media/ccrcn_data_submission_flowchart.jpg" alt="CCN Data Submission Flowchart" align="center"/></p>
 </div>
 <div id="how-to-contribute" class="section level3">
 <h3>How to Contribute</h3>
-<p>We welcome contributions of carbon data from coastal wetland habitats that experience tidal influence (or are anticipated to the future). We accept data that is published or unpublished as long as the original measurements are or can be made available. If you are interested in contributing data, please email <a href="mailto:CoastalCarbon@si.edu">CoastalCarbon@si.edu</a> and CCN personnel will assist you in the process. We also encourage you to make a submission to our <a href="https://docs.google.com/spreadsheets/d/1e9_Dv8XzrPrHcNnOlQM2R2H1tRc3LoKCeWNqsGgoq9w/edit?usp=sharing">Coastal Carbon Data Discovery</a> form.</p>
-<p>We take a flexible approach when it comes to data contribution, which can require more or less participation on the part of the data contributor. If a dataset already has a citable data publication, we do the work to bring the dataset into our synthesis (with attribution), reaching out to the dataset authors to ensure that we are accurately representing their dataset.</p>
-<p>If the data is unpublished, we can first work with the data contributor to prepare a standalone citable publication for the complete dataset. Unpublished data can remain unpublished or embargoed for a duration specified by the submitter. When the embargo period ends, the data release is made public, and the dataset is drawn into CCN synthesis products.</p>
-<p>In all cases, authorship attribution to the original authors will be retained.</p>
+<p>We welcome contributions of carbon data from coastal wetland habitats
+that experience tidal influence (or are anticipated to the future). We
+accept data that is published or unpublished as long as the original
+measurements are or can be made available. If you are interested in
+contributing data, please email <a
+href="mailto:CoastalCarbon@si.edu">CoastalCarbon@si.edu</a> and CCN
+personnel will assist you in the process. We also encourage you to make
+a submission to our <a
+href="https://docs.google.com/spreadsheets/d/1e9_Dv8XzrPrHcNnOlQM2R2H1tRc3LoKCeWNqsGgoq9w/edit?usp=sharing">Coastal
+Carbon Data Discovery</a> form.</p>
+<p>We take a flexible approach when it comes to data contribution, which
+can require more or less participation on the part of the data
+contributor. If a dataset already has a citable data publication, we do
+the work to bring the dataset into our synthesis (with attribution),
+reaching out to the dataset authors to ensure that we are accurately
+representing their dataset.</p>
+<p>If the data is unpublished, we can first work with the data
+contributor to prepare a standalone citable publication for the complete
+dataset. Unpublished data can remain unpublished or embargoed for a
+duration specified by the submitter. When the embargo period ends, the
+data release is made public, and the dataset is drawn into CCN synthesis
+products.</p>
+<p>In all cases, authorship attribution to the original authors will be
+retained.</p>
 </div>
 <div id="data-publishing-support" class="section level3">
 <h3>Data Publishing Support</h3>
-<p>In addition to synthesizing and serving open-source data, the CCN offers publishing support and guidance to the research community. The support we offer for data publication ranges from consultation to hands-on data release assembly. In either case, the CCN aims to facilitate the independent publication of well-documented datasets which credits the authors of the data and assigns a stable DOI. We work to educate dataset authors about the data archival process and the information that they will need to provide to ensure that their dataset is well-represented and usable.</p>
-<p>A CCN-prepared data release will be assembled with proper documentation and shared with the corresponding author via a private link for review.</p>
+<p>In addition to synthesizing and serving open-source data, the CCN
+offers publishing support and guidance to the research community. The
+support we offer for data publication ranges from consultation to
+hands-on data release assembly. In either case, the CCN aims to
+facilitate the independent publication of well-documented datasets which
+credits the authors of the data and assigns a stable DOI. We work to
+educate dataset authors about the data archival process and the
+information that they will need to provide to ensure that their dataset
+is well-represented and usable.</p>
+<p>A CCN-prepared data release will be assembled with proper
+documentation and shared with the corresponding author via a private
+link for review.</p>
 </div>
 <div id="data-standards" class="section level3">
 <h3>Data Standards</h3>
-<p>The CCN has developed guidance with community feedback for the standardization of information which is collected from coastal wetlands. We currently offers data-structuring guidance for the following types of data: <a href="https://smithsonian.github.io/CCN-Community-Resources/soil_carbon_guidance.html">soil carbon</a>, chamber-based greenhouse gas flux, soil pore water, and biomass.</p>
-<p>We offer the option for the authors to fill out data templates containing table-specific glossaries. Templates for data entry can currently be downloaded from the <a href="https://drive.google.com/drive/folders/14N-7l1s151Qmp4AqQOWtIeMtc3efsYZT?usp=sharing">CCRCN Data Templates</a> folder on Google Drive. These may also be used as a more general reference for data structuring.</p>
-<p>Please note: Our goal is to meet our data contributors where they are in terms of the time and effort they can put toward aligning their datasets to the CCN database structure and create a data product that best-represents their data within the context of their study.</p>
+<p>The CCN has developed guidance with community feedback for the
+standardization of information which is collected from coastal wetlands.
+We currently offers data-structuring guidance for the following types of
+data: <a
+href="https://smithsonian.github.io/CCN-Community-Resources/soil_carbon_guidance.html">soil
+carbon</a>, chamber-based greenhouse gas flux, soil pore water, and
+biomass.</p>
+<p>We offer the option for the authors to fill out data templates
+containing table-specific glossaries. Templates for data entry can
+currently be downloaded from the <a
+href="https://drive.google.com/drive/folders/14N-7l1s151Qmp4AqQOWtIeMtc3efsYZT?usp=sharing">CCRCN
+Data Templates</a> folder on Google Drive. These may also be used as a
+more general reference for data structuring.</p>
+<p>Please note: Our goal is to meet our data contributors where they are
+in terms of the time and effort they can put toward aligning their
+datasets to the CCN database structure and create a data product that
+best-represents their data within the context of their study.</p>
 </div>
 <div id="testimonials" class="section level3">
 <h3>Testimonials</h3>
-<p>“The Coastal Carbon Research Coordination Network dataset has been invaluable in our recent research identifying global drivers of variability in coastal wetland carbon cycling. The Network’s dataset greatly complemented our own previous data collation efforts, filling important gaps in our record. The availability of a comprehensive and well-curated dataset allowed us to focus on the analysis and interpretation of data, deriving important new insights in global patterns of carbon storage.”</p>
-<p>- <em>Jeffrey Kelleway, Department of Environmental Sciences, Macquarie University</em></p>
-<p>“The CCRCN database is a key cornerstone in accelerating the pace of discovery for coastal carbon cycling. I recently downloaded version 1, and have begun analylzing it and intercomparing its features with other national and global sets on soil core characteristics. As it focuses only on soilcores from tidal wetland, it is the single largest and spatially explicit empirical dataset, globally, for populating carbon stock assessments or testing models across space and time. For coastal lands, it is an invaulable asset for scientists and managers alike.  The developers of the dataset and platform should be commended, as should the many community contributors who are fueling advances in science and practice by sharing their data.”</p>
-<p>“[The CCRCN administrators] are doing an amazing job at this organization and promoting inclusivity. I am floored by your intuition and abilities. You are the natural heirs to this community-building.”</p>
+<p>“The Coastal Carbon Research Coordination Network dataset has been
+invaluable in our recent research identifying global drivers of
+variability in coastal wetland carbon cycling. The Network’s dataset
+greatly complemented our own previous data collation efforts, filling
+important gaps in our record. The availability of a comprehensive and
+well-curated dataset allowed us to focus on the analysis and
+interpretation of data, deriving important new insights in global
+patterns of carbon storage.”</p>
+<p>- <em>Jeffrey Kelleway, Department of Environmental Sciences,
+Macquarie University</em></p>
+<p>“The CCRCN database is a key cornerstone in accelerating the pace of
+discovery for coastal carbon cycling. I recently downloaded version 1,
+and have begun analylzing it and intercomparing its features with other
+national and global sets on soil core characteristics. As it focuses
+only on soilcores from tidal wetland, it is the single largest and
+spatially explicit empirical dataset, globally, for populating carbon
+stock assessments or testing models across space and time. For coastal
+lands, it is an invaulable asset for scientists and managers alike.  The
+developers of the dataset and platform should be commended, as should
+the many community contributors who are fueling advances in science and
+practice by sharing their data.”</p>
+<p>“[The CCRCN administrators] are doing an amazing job at this
+organization and promoting inclusivity. I am floored by your intuition
+and abilities. You are the natural heirs to this
+community-building.”</p>
 <p>- <em>Lisamarie Windham-Myers, U.S. Geological Survey</em></p>
 </div>
 
@@ -501,6 +598,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

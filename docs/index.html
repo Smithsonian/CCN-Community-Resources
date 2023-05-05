@@ -11,10 +11,10 @@
 
 
 
-<title>Welcome to the CCRCN Community Resources Portal</title>
+<title>Welcome to the Coastal Carbon Network Community Resources Portal</title>
 
-<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -63,6 +63,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -83,6 +84,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -140,11 +144,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -173,8 +181,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -182,16 +190,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -314,7 +315,7 @@ div.tocify {
 <div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -324,7 +325,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     About
      
     <span class="caret"></span>
@@ -334,27 +335,15 @@ div.tocify {
       <a href="about.html">About the Network</a>
     </li>
     <li>
+      <a href="groups.html">Working Groups</a>
+    </li>
+    <li>
       <a href="governance.html">Principles and Governance</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Projects
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="swg.html">Soils Working Group</a>
-    </li>
-    <li>
-      <a href="mwg.html">Methane Working Group</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Products
      
     <span class="caret"></span>
@@ -369,7 +358,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Data
      
     <span class="caret"></span>
@@ -390,7 +379,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Resources
      
     <span class="caret"></span>
@@ -401,6 +390,9 @@ div.tocify {
     </li>
     <li>
       <a href="materials.html">Data Contributor Materials</a>
+    </li>
+    <li>
+      <a href="join.html">Join the Network</a>
     </li>
     <li>
       <a href="conduct.html">Conduct and Collaboration</a>
@@ -419,45 +411,25 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Welcome to the CCRCN Community Resources Portal</h1>
+<h1 class="title toc-ignore">Welcome to the Coastal Carbon Network
+Community Resources Portal</h1>
 
 </div>
 
 
-<p><em>Description of the purpose of this website.</em></p>
-<div id="quick-links" class="section level2">
-<h2>Quick Links</h2>
-</div>
-<div id="news-and-announcements" class="section level2">
-<h2>News and Announcements</h2>
-<p><strong>Read the CCRCN Blue Carbon Inventory Report</strong></p>
-<p>The CCRCN collaborated with Pew Charitable Trusts to produce a report on the <a href="https://smithsonian.github.io/CCRCN-Pew-Project/">state of blue carbon data</a> in the contiguous United States. In this first-ever inventory of our database, we assess the quantity, quality, and representativeness of soil core data on a state-by-state basis. Check out the <a href="https://smithsonian.github.io/CCRCN-Pew-Project/analysis.html#national-overview">national overview</a> to find out how your state scores on our blue carbon data report card!</p>
-<p><strong>Join us for our Annual Town Hall at AGU</strong></p>
-<p>Mark your AGU 2019 Calendars for our annual Townhall on Thursday Night at 6:15 pm Moscone West - 2014, L3. Come learn about the network, get progress updates from our working groups and your input on how we use our next three years.</p>
-<p><strong>Take our Expert Elicitation Survey</strong></p>
-<p>Are you an expert on belowground plant traits and/or decay properties in tidal wetlands? Spend 15 to 30 minutes with our expert elicitation application and give us your best educated guess on several hard to measure traits. The survey is anonymous and will be used to inform our priors for a Bayesian data-model integration study.</p>
-<p>Archive</p>
-<p><strong>Recording of Coastal Carbon Atlas Webinar</strong></p>
-<p>Missed our webinar on the Network and our Coastal Carbon Atlas? Thanks to host Restore America’s Estuaries (RAE), a <a href="https://www.youtube.com/watch?v=sEcu1kZAs-o">recording is available online.</a> This presentation was part of RAE’s Blue Carbon in Practice webinar series which featured discussions on new policy, research, and tools in the field.</p>
-<p><strong>Feature in SERC <em>Shorelines</em> Blog</strong></p>
-<p>The Smithsonian’s coastal newsletter <em>On the Edge</em> (<a href="https://serc.si.edu/sites/default/files/pictures/newsletters/serc_newsletter_spring2019_final.pdf">Spring 2019</a>) featured a cover story on the CCRCN’s data synthesis and modeling efforts related to carbon storage, and provides a clean overview of the importance of carbon (and especially methane) accounting. <a href="https://sercblog.si.edu/rethinking-carbon/">Check out the full story here</a>.</p>
-<p><strong>Introducing the Coastal Carbon Atlas</strong></p>
-<p>The CCRCN is pleased to announce the public release of the Coastal Carbon Atlas as a feature of our Data Clearinghouse. Using this web map portal, you can visualize, query, and download directly from the CCRCN database, and provided with raw data is helpful resources and a catered bibliography. Click here to learn more about the CCRCN Data Clearinghouse.</p>
-<p><strong>Welcome to New Steering Committee Members</strong></p>
-<p>Thanks to Members Emeritus We would like to welcome Dr. Steve Crooks, Dr. Patty Oikawa, and Dr. Ken Krauss to our Steering Committee, congratulations! We would also like to deeply thank Dr. Lisamarie Windham-Myers and Dr. Kevin Kroeger, who are rotating off of our steering committee, for their vital service in getting the CCRCN funded and for advising us during our first year. Read about the CCRCN administration here.</p>
-<p><strong>CCRCN Hosts Successful Inaugural Working Group</strong></p>
-<p>On December 8-9 2018, 17 members of the Soil Carbon working group convened at the Smithsonian Environmental Research Center, integrating biogeochemical, geospatial, botanical, and geomorphological expertise to accelerate modeling and mapping efforts. Learn more about the working group here.</p>
-<p>Now Accepting Nominations for our Steering Committee</p>
-<p><strong>Soil Carbon Working Group Up and Running</strong></p>
-<p>The CCRCN’s inaugural working group began collaborating in July. The group seeks to determine how much variation in carbon stocks and burial rates is attributable to scientific practices versus environmental covariates, and to develop map and model products. Learn more on the Soil Carbon Working Group page.</p>
-<p><strong>Learn Data Manipulation with CCN R Coding Tutorials</strong></p>
-<p>We have just made available a suite of coding tutorials that utilize RStudio and tidyverse packages to teach data manipulation and visualization skills. These exercises, which are geared towards the introductory R user, enable you to explore the CCRCN Soil Carbon Data Release (version 1), but also will improve data skills related to your own projects.</p>
-<p>Check out the coding tutorials here.</p>
-<p><strong>2017 National Greenhouse Gas Inventory</strong></p>
-<p>The CCN participated in a literature review and data synthesis supporting the 2017 U.S. Coastal Wetland National Greenhouse Gas Inventory. The workflow, summary tables, and resulting report are hosted in the <a href="https://github.com/Smithsonian/Coastal-Wetland-NGGI-Data-Public">Coastal Wetland NGGI</a> repository on the Smithsonian Github.</p>
-<p>Past Events</p>
-<p>CCRCN Town Hall at AGU Fall Meeting, December 13 2018 The CCRCN will be hosting another town hall at the American Geophysical Union Fall meeting, December 10-14 2018. The town hall will be held from 18:15-19:15 on Thursday, December 13 in in the Marriott Marquis. Learn more about the town hall here.</p>
-</div>
+<p><svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32z"/></svg>
+<em>Please note: This website is under construction!</em>
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32z"/></svg></p>
+<p>If you have comments or suggestions for the Community Resource
+Website, please submit them to our <a
+href="https://github.com/Smithsonian/CCN-Community-Resources/issues">GitHub
+page</a>. For other questions, please contact <a
+href="mailto:CoastalCarbon@si.edu"
+class="email">CoastalCarbon@si.edu</a>.</p>
+<p>In the meantime, please enjoy this picture of mangroves from Costa
+Rica:</p>
+<p><img src="media/cr_mangroves_wolfe.jpeg" /></p>
+<p><em>Photo taken by Jaxine Wolfe, CCN Data Coordinator.</em></p>
 
 
 
@@ -497,6 +469,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

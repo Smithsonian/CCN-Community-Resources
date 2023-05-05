@@ -9,16 +9,16 @@ navbar:
       menu:
         - text: "About the Network"
           href: about.html
+        - text: "Working Groups"
+          href: groups.html
         - text: "Principles and Governance"
           href: governance.html
-        # - text: "Working Groups"
-        #   href: groups.html
-    - text: "Working Groups"
-      menu:
-        - text: "Soils Working Group"
-          href: swg.html
-        - text: "Methane Working Group"
-          href: mwg.html
+    # - text: "Working Groups"
+    #   menu:
+    #     - text: "Soils Working Group"
+    #       href: swg.html
+    #     - text: "Methane Working Group"
+    #       href: mwg.html
     - text: "Products"
       menu:
         - text: "Coastal Carbon Atlas"

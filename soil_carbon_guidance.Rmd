@@ -41,7 +41,8 @@ guidance <- read_csv("https://raw.githubusercontent.com/Smithsonian/CCRCN-Data-L
                                    attribute_name %in% c("study_id", "site_id", "core_id", "method_id", "habitat",
                                                          "salinity_class", "vegetation_class", "inundation_class", "impact_class",
                                                          "salinity_method", "vegetation_method", "inundation_method") ~ "Y", 
-                                   TRUE ~ NA_character_)) %>% 
+                                   TRUE ~ NA_character_),
+         format_unit_codes = ifelse(grepl("_activity", attribute_name), "units vary", format_unit_codes)) %>% 
   # mutate(required = recode(required, "conditional" = "encouraged")) %>% 
   select(table, attribute_name, attribute_definition, required,  data_type, format_unit_codes) %>% 
   left_join(vars_collapse) # join the collapsed variable names
